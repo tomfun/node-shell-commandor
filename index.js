@@ -4,6 +4,7 @@ const _ = require('lodash');
 const blessed = require('blessed');
 const Command = require('./lib/command').default;
 const Commander = require('./lib/commander').default;
+const Viewer = require('./lib/viewer').default;
 
 module.exports.run = function run(commands, opt = {title: 'my commander'}) {
   // Create a screen object.
@@ -15,7 +16,7 @@ module.exports.run = function run(commands, opt = {title: 'my commander'}) {
 
 
 // Quit on Escape, q, or Control-C.
-  screen.key(['escape', 'q', 'C-c'], function (ch, key) {
+  screen.key(['q', 'C-c'], function (ch, key) {
     return process.exit(0);
   });
 
@@ -38,8 +39,22 @@ module.exports.run = function run(commands, opt = {title: 'my commander'}) {
   commander.box.focus();
   screen.render();
 
+  const viewer = new Viewer(coms);
+  viewer.createBox();
+  screen.append(viewer.box);
+
+  commander.onSelectedChange = (i) => {
+    viewer.selectedIndex = i;
+    viewer.box.show();
+    viewer.box.focus();
+    viewer.refresh();
+    screen.render();
+    screen.program.disableMouse();
+  };
+
   const delayedRender = _.debounce(() => {
     commander.refresh();
+    viewer.refresh();
     screen.render();
   }, 100);
   _.each(coms, (com) => {

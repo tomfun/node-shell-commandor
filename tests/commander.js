@@ -15,8 +15,8 @@ describe('test commander class', function () {
       isOk() {return true;},
       opt: {},
     };
-    const formatCommand = Commander.prototype.formatCommand;
-    formatCommand(command).should.be.equal('{right}{green-fg}echo 1{/green-fg}{/right}');
+    const formatCommand = Commander.prototype.formatCommand.bind({});
+    formatCommand(command, 0).should.be.equal('{right}{green-fg}echo 1{/green-fg}{/right}');
   });
   it('test format name', function () {
     const command = {
@@ -29,7 +29,7 @@ describe('test commander class', function () {
         name: 'simple'
       },
     };
-    const formatCommand = Commander.prototype.formatCommand;
+    const formatCommand = Commander.prototype.formatCommand.bind({selectedIndex: 0});
     formatCommand(command).should.be.equal('{right}{green-bg}simple{/green-bg}{/right}');
   });
   it('test format errored', function () {
@@ -43,7 +43,7 @@ describe('test commander class', function () {
         name: 'simple'
       },
     };
-    const formatCommand = Commander.prototype.formatCommand;
+    const formatCommand = Commander.prototype.formatCommand.bind({selectedIndex: 0});
     formatCommand(command).should.be.equal('{right}{green-bg}{red-fg}simple{/red-fg}{/green-bg}{/right}');
   });
 });

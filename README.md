@@ -14,6 +14,11 @@ commands = [{
 
 commander.run(commands);
 ```
-![example run](http://joxi.ru/xAe8EQYuYW1P52.jpg)
+![example run](examples/why.jpg)
 
-How to exit? Ctrl+c
+How to exit? *Ctrl+c* or *q*
+
+How to see output of selected command? Use arrows (up/down then enter)
+
+![example run](examples/select.jpg)
+![example run](examples/view.jpg)

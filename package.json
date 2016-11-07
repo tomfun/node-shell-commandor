@@ -1,13 +1,14 @@
 {
   "name": "node-shell-commandor",
   "version": "0.0.1",
-  "description": "",
+  "description": "javascript terminal multiplexer and command runner",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/.bin/mocha --colors --require should tests/"
   },
   "author": "tomfun",
   "license": "MIT",
+  "repository": "git://github.com/tomfun/node-shell-commandor.git",
   "dependencies": {
     "lodash": "^4.16.6"
   },

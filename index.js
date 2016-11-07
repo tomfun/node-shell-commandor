@@ -21,11 +21,11 @@ module.exports.run = function run(commands, opt = {title: 'my commander'}) {
 
 // Focus our element.
   const commanderWidth = 20;
-  const width = `${100 / commands.length | 0}%-${commands.length * 2 + commanderWidth}`;
+  const width = `${(100 - commanderWidth) / commands.length | 0}%`;
   const coms = _.map(commands, (com, i) => {
     const boxOpt = _.extend({}, com.boxOpt || {}, {
       width,
-      left: i ? `${i * 100 / commands.length | 0}%-${i * 2 + i * commanderWidth / commands.length | 0}` : '0',
+      left: i ? `${i * (100 - commanderWidth) / commands.length | 0}%` : '0',
     });
     const c = new Command(com.command, com.opt || {}, boxOpt);
     c.createBox();

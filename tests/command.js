@@ -50,6 +50,7 @@ describe('test command class', function () {
     var callCounter = 0;
     function doneAfterTwoCall() {
       if (++callCounter == 2) {
+        echo.isRunning().should.be.equal(false);
         echo.isFailed().should.be.equal(false);
         echo.hasErrors().should.be.equal(false);
         echo.error.should.be.equal('');

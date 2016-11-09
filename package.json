@@ -1,6 +1,6 @@
 {
   "name": "node-shell-commandor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "javascript terminal multiplexer and command runner",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,9 @@
   "license": "MIT",
   "repository": "git://github.com/tomfun/node-shell-commandor.git",
   "dependencies": {
-    "lodash": "^4.16.6"
+    "blessed": "^0.1.81",
+    "lodash": "^4.16.6",
+    "tree-kill": "^1.1.0"
   },
   "devDependencies": {
     "mocha": "^3.1.2",

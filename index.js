@@ -17,7 +17,12 @@ module.exports.run = function run(commands, opt = {title: 'my commander'}) {
 
 // Quit on Escape, q, or Control-C.
   screen.key(['q', 'C-c'], function (ch, key) {
-    return process.exit(0);
+    Promise.all(_.map(coms, (com) => com.shutdown()))
+      .catch((err) => {
+        console.error(err);
+        process.exit(1);
+      })
+      .then(() => process.exit(0));
   });
 
 // Focus our element.
